@@ -1,0 +1,71 @@
+<ion-header no-border>
+    <ion-toolbar color="hsonga">
+        <ion-buttons slot="start">
+            <ion-menu-button color="light" menu="first"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Asignar O/E</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center">
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12" class="top-5">
+                <ion-item class="background-input">
+                    <ion-label>Producto</ion-label>
+                    <ion-input class="ion-text-right" inputmode="numeric" [(ngModel)]="producto" (ionBlur)="OnBlur($event)"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-list>
+                    <ion-list-header></ion-list-header>
+                    <ion-item class="background-input">
+                        <ion-label position="stacked">Tallas</ion-label>
+                        <ion-select placeholder="Seleccione" [(ngModel)]="tallaselec" (ionChange)="OnChange($event)" interface="action-sheet">
+                            <ion-select-option *ngFor="let talla of tallas | async" [value]="talla.id">{{talla.descrip}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item class="background-input top-5">
+                        <ion-label position="stacked">Tallas Venta</ion-label>
+                        <ion-select placeholder="Seleccione" [(ngModel)]="tallaVenta" (ionChange)="OnChangeVen($event)" interface="action-sheet">
+                            <ion-select-option *ngFor="let t of tallasVentas | async" [value]="t.id">{{t.descrip}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-item>
+                    <ion-label>Columna</ion-label>
+                    <ion-badge slot="end" color="songa">{{clase}}</ion-badge>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-item>
+                    <ion-label>Saldo Actual</ion-label>
+                    <ion-badge slot="end" color="songa">{{saldoActual}}</ion-badge>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" class="top-5">
+                <ion-item>
+                    <ion-label class="background-input">Cantidad</ion-label>
+                    <ion-input class="ion-text-right" inputmode="numeric" placeholder="0" [(ngModel)]="cantidad">
+                    </ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" class="top-5">
+                <ion-button expand="block" class="top-3" size="Large" (click)="Guardar()" [disabled]="cantidad==null" color="songa">
+                    Guardar</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

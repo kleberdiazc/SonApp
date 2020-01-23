@@ -1,5 +1,7 @@
 {
   "name": "songaApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -1,0 +1,55 @@
+ion-content {
+    --background: #ffffff;
+    --background: -moz-linear-gradient(top, #ffffff 10%, #0087b9 90%);
+    --background: -webkit-linear-gradient(top, #ffffff 10%, #0087b9 90%);
+    --background: linear-gradient(to bottom, #ffffff 10%, #0087b9 90%);
+}
+
+img {
+    width: 200px;
+}
+
+.top-20 {
+    margin-top: 20%
+}
+
+.top-5 {
+    margin-top: 5%
+}
+
+.top-3 {
+    margin-top: 3%
+}
+
+.ion-color-facebook {
+    --ion-color-base: var(--ion-color-facebook);
+    --ion-color-base-rgb: var(--ion-color-facebook-rgb);
+    --ion-color-contrast: var(--ion-color-facebook-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-facebook-contrast-rgb);
+    --ion-color-shade: var(--ion-color-facebook-shade);
+    --ion-color-tint: var(--ion-color-facebook-tint);
+}
+
+.ion-color-google {
+    --ion-color-base: var(--ion-color-google);
+    --ion-color-base-rgb: var(--ion-color-google-rgb);
+    --ion-color-contrast: var(--ion-color-google-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-google-contrast-rgb);
+    --ion-color-shade: var(--ion-color-google-shade);
+    --ion-color-tint: var(--ion-color-google-tint);
+}
+
+ion-input {
+    --border-radius: 20px !important;
+    --border-style: solid !important;
+    --border-color: blue !important;
+}
+
+.ion-color-songa {
+    --ion-color-base: var(--ion-color-songa);
+    --ion-color-base-rgb: var(--ion-color-songa-rgb);
+    --ion-color-contrast: var(--ion-color-songa-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-songa-contrast-rgb);
+    --ion-color-shade: var(--ion-color-songa-shade);
+    --ion-color-tint: var(--ion-color-songa-tint);
+}
