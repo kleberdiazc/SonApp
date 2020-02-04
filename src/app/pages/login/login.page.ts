@@ -14,13 +14,23 @@ import { LoadingController } from '@ionic/angular';
 export class LoginPage implements OnInit {
   usuario: string = '';
   contrasena:string = '';
-  loading: any;
+  loading: any = this.loadingController.create();
   constructor(public navCtrl: NavController,
               public router: Router,
               public _login: LoginService,
-              public loadingController: LoadingController) { }
+              public loadingController: LoadingController) {
+                console.log(this._login.activo());
+                if (this._login.activo()) {
+                  console.log('INICIO' + this._login.activo());
+                  this.router.navigate(['/menu/inicio']);
+                }
+               }
 
   ngOnInit() {
+    /*if (this._login.activo()) {
+      console.log('INICIO' + this._login.activo());
+      this.router.navigate(['/menu/inicio']);
+    }*/
   }
 
   async presentLoading(mensaje: string) {
@@ -36,9 +46,10 @@ export class LoginPage implements OnInit {
     }
   }*/
     ingresar() {
-    //this.loading = this.presentLoading('Autenticando');
+    this.loading = this.presentLoading('Autenticando');
     this._login.ingresar(this.usuario, this.contrasena)
               .subscribe(() => {
+                this.loading.dismiss();
                 if (this._login.activo()) {
                   this.router.navigate(['/menu/inicio']);
                 }

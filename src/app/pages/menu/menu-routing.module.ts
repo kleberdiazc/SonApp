@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: () => import('../empaque/empaque.module').then( m => m.EmpaquePageModule)
       },
       {
+        path: 'empaque-list',
+        loadChildren: () => import('../empaque-list/empaque-list.module').then( m => m.EmpaqueListPageModule)
+      },
+      {
         path: 'full',
         redirectTo: '/menu/inicio'
       }

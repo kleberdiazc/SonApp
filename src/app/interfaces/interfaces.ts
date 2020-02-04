@@ -9,3 +9,11 @@ export interface Tallas {
     descrip: string;
 
 }
+
+export interface EmpList{
+    idtalv:number;
+    descripv: string;
+    idtal:number
+    descrip: string;
+
+}

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, filter } from 'rxjs/operators';
-import { AlertController, Platform } from '@ionic/angular';
+import { AlertController, Platform, LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { Tallas } from '../interfaces/interfaces';
+import { Tallas, EmpList } from '../interfaces/interfaces';
 import { URL_CONSULTA } from '../../config/url.servicios';
 import { URL_TRANSAC } from './../../config/url.servicios';
 
@@ -14,10 +14,12 @@ import { URL_TRANSAC } from './../../config/url.servicios';
 export class DatosService {
   saldo: number = 0;
   valido: string = 'true';
+  loading: any;
   constructor(private http: HttpClient,
               public alertController: AlertController,
               public platform: Platform,
-              private storage: Storage) { }
+              private storage: Storage,
+              public loadingController: LoadingController) { }
   getTallasxProducto(producto: string) {
     let data = {
        sp: 'sp_buscar_tallasxProd',
@@ -26,6 +28,12 @@ export class DatosService {
     return  this.http.post<Tallas[]>(URL_CONSULTA, data);
     }
 
+    async presentLoading(mensaje: string) {
+      this.loading = await this.loadingController.create({
+        message: mensaje
+      });
+      return  this.loading.present();
+    }
 
     getTallasxVenta(producto: string, talla: number) {
       let data = {
@@ -81,6 +89,14 @@ export class DatosService {
       }));
 
     }
+
+    getListaTalla(producto: string) {
+      let data = {
+         sp: 'sp_buscar_ListEm',
+         parameters : 'produc:' + producto + ':Varchar|'
+      };
+      return  this.http.post<EmpList[]>(URL_CONSULTA, data);
+      }
 
 
 }

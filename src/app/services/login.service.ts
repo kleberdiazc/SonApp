@@ -42,7 +42,9 @@ export class LoginService {
 
   }
   activo(): boolean {
+    //debugger;
     console.log('log' + this.id_usuario);
+    this.cargarStorage();
     if (this.id_usuario) {
       return true;
     } else {
@@ -88,13 +90,14 @@ export class LoginService {
      } else {
        if (localStorage.getItem('token')) {
          this.token = localStorage.getItem('token');
-         this.token = localStorage.getItem('id_usuario');
+         this.id_usuario = localStorage.getItem('id_usuario');
        }
        resolve();
-       console.log('Cragar Usuario' + this.id_usuario)
-       return promesa;
+       console.log('Cragar Usuario' + this.id_usuario);
+       //return promesa;
      }
-    });
+    }).then();
+    //promesa.then();
 
   }
   cerrar_sesion() {

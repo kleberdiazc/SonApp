@@ -1,0 +1,33 @@
+.top-20 {
+    margin-top: 20%
+}
+
+.top-5 {
+    margin-top: 5%
+}
+
+.top-3 {
+    margin-top: 3%
+}
+
+.ion-color-hsonga {
+    --ion-color-base: var(--ion-color-hsonga);
+    --ion-color-base-rgb: var(--ion-color-hsonga-rgb);
+    --ion-color-contrast: var(--ion-color-hsonga-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-hsonga-contrast-rgb);
+    --ion-color-shade: var(--ion-color-hsonga-shade);
+    --ion-color-tint: var(--ion-color-hsonga-tint);
+}
+
+.ion-color-songa {
+    --ion-color-base: var(--ion-color-songa);
+    --ion-color-base-rgb: var(--ion-color-songa-rgb);
+    --ion-color-contrast: var(--ion-color-songa-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-songa-contrast-rgb);
+    --ion-color-shade: var(--ion-color-songa-shade);
+    --ion-color-tint: var(--ion-color-songa-tint);
+}
+
+ion-checkbox {
+    --size: 20px;
+}
