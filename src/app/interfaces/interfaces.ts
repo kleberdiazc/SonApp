@@ -11,9 +11,20 @@ export interface Tallas {
 }
 
 export interface EmpList{
-    idtalv:number;
+    isChecked: boolean;
+    idtalv: number;
     descripv: string;
-    idtal:number
+    idtal: number;
     descrip: string;
+    Cantidad: number;
+    pro_clasepago: string;
+    sectab: number;
+    A: number;
+    B: number;
+    C: number;
+    isA: boolean;
+    isB: boolean;
+    isC: boolean;
+
 
 }
