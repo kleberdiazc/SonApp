@@ -17,7 +17,10 @@ export class EmpaqueListPage implements OnInit {
   A: number = 0;
   B: number = 0;
   C: number = 0;
-  chbox: number = 0;
+  chbox: boolean = false;
+  ischeckA: boolean = false;
+  ischeckB: boolean = false;
+  ischeckC: boolean = false;
   constructor(private _data: DatosService,
               private _list: ListaempService,
               public alertController: AlertController,
@@ -25,6 +28,7 @@ export class EmpaqueListPage implements OnInit {
 
   ngOnInit() {
   }
+
   async presentLoading(mensaje: string) {
     this.loading = await this.loadingController.create({
       message: mensaje
@@ -42,8 +46,28 @@ export class EmpaqueListPage implements OnInit {
       this.ChangeValuesColumn();
       this.loading.dismiss();
     });
-    this.chbox = 0;
+    this.chbox = false;
+    this.ischeckA = false;
+    this.ischeckB = false;
+    this.ischeckC = false;
   }
+  Buscar_Prd() {
+    this.A = 0;
+    this.B = 0;
+    this.C = 0;
+    this.loading = this.presentLoading('Cargando');
+    this._list.getListaTalla(this.producto).subscribe((resp) => {
+      this.EmpList = resp;
+      this.ChangeValuesColumn();
+      this.loading.dismiss();
+    });
+    this.chbox = false;
+    this.ischeckA = false;
+    this.ischeckB = false;
+    this.ischeckC = false;
+  }
+
+
   OnChangeBox(event) {
     const state: boolean =  event.target.checked;
     for (let item of this.EmpList) {
@@ -54,7 +78,8 @@ export class EmpaqueListPage implements OnInit {
   OnChangeRad(event) {
     if (this.EmpList.length > 0) {
     const state: string =  event.target.value;
-    this.ChangeValuesRadio(state);
+    const ischecked: string = event.target.checked;
+    this.ChangeValuesRadio(state,ischecked);
     this.ChangeValuesRadioB(state);
     }
   }
@@ -134,7 +159,7 @@ export class EmpaqueListPage implements OnInit {
     console.log(xml);
     this._list.guardarOe(xml, 'Administra').subscribe(() => {
         this.loading.dismiss();
-        console.log('Grabado Exitoso');
+        this.limpiar();
       });
   }
 
@@ -152,20 +177,26 @@ export class EmpaqueListPage implements OnInit {
     }
   }
 
-  ChangeValuesRadio(valor) {
+  ChangeValuesRadio(valor, checked) {
     for(let item of this.EmpList) {
           if (valor === 'A') {
-            item.A = 1;
-            item.B = 0;
-            item.C = 0;
+            if (checked === true){
+              item.A = 1;
+            } else {
+              item.A = 0;
+            }
           } else if (valor === 'B') {
-            item.B = 1;
-            item.A = 0;
-            item.C = 0;
+            if (checked === true){
+              item.B = 1;
+            } else {
+              item.B = 0;
+            }
           } else if (valor === 'C') {
-            item.C = 1;
-            item.B = 0;
-            item.A = 0;
+            if (checked === true) {
+              item.C = 1;
+            } else {
+              item.C = 0;
+            }
           } else {
             item.A = 0;
             item.B = 0;
@@ -177,15 +208,9 @@ export class EmpaqueListPage implements OnInit {
   ChangeValuesRadioB(state) {
     if (state  === 'A') {
       this.A = 1;
-      this.B = 0;
-      this.C = 0;
     } else if (state  === 'B') {
-      this.A = 0;
       this.B = 1;
-      this.C = 0;
     } else if (state  === 'C') {
-      this.A = 0;
-      this.B = 0;
       this.C = 1;
     } else {
       this.A = 0;
@@ -196,28 +221,43 @@ export class EmpaqueListPage implements OnInit {
 
   OnChangeRaitem(event, i) {
     const state: string =  event.target.value;
+    const ischeck: boolean = event.target.checked;
+    console.log(state, ischeck);
     for (let index = 0; index < this.EmpList.length; index++) {
       const element = this.EmpList[index];
       if (index === i) {
         if (state === 'A') {
-          element.A = 1;
-          element.B = 0;
-          element.C = 0;
+          if (ischeck === true) {
+            element.A = 1;
+          } else {
+            element.A = 0;
+          }
         } else if (state === 'B') {
-          element.B = 1;
-          element.A = 0;
-          element.C = 0;
+          if (ischeck === true) {
+            element.B = 1;
+          } else {
+            element.B = 0;
+          }
         } else if (state === 'C') {
-          element.C = 1;
-          element.B = 0;
-          element.A = 0;
-        } else {
-          element.A = 0;
-          element.B = 0;
-          element.C = 0;
+          if (ischeck === true) {
+            element.C = 1;
+          } else {
+            element.C = 0;
+          }
         }
       }
     }
+  }
+
+  limpiar() {
+    this.EmpList = [];
+    this.producto = '';
+    this.ischeckA = false;
+    this.ischeckB = false;
+    this.ischeckC = false;
+    this.A = 0;
+    this.B = 0;
+    this.C = 0;
   }
 
 }

@@ -32,11 +32,25 @@ ion-checkbox {
     --size: 20px;
 }
 
+.ion-checkEdit {
+    --size: 15px;
+}
+
 .ion-prd {
     border-radius: 10px !important;
     padding-right: 30px;
     font-size: 0.9em;
     border: 1px solid #006D97 !important;
+    /*--background: rgb(219, 219, 219) !important;*/
+    /* height: 10%; */
+    /* width: 41%; */
+    max-width: 50vw; // this is applying perfectly
+    max-height: 10vh;
+}
+
+.ion-buscar {
+    padding-right: 30px;
+    font-size: 0.9em;
     /*--background: rgb(219, 219, 219) !important;*/
     /* height: 10%; */
     /* width: 41%; */
@@ -57,5 +71,16 @@ ion-checkbox {
     /* height: 10%; */
     /* width: 41%; */
     max-width: 50vw !important; // this is applying perfectly
+    max-height: 10vh !important;
+}
+
+.my-cant {
+    border-radius: 10px !important;
+    padding-right: 30px;
+    font-size: 0.7em;
+    background: rgb(219, 219, 219) !important;
+    /* height: 10%; */
+    /* width: 41%; */
+    max-width: 80vw !important; // this is applying perfectly
     max-height: 10vh !important;
 }
