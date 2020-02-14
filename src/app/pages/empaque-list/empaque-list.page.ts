@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmpList } from '../../interfaces/interfaces';
 import { Observable } from 'rxjs';
 import { ListaempService } from '../../services/listaemp.service';
 import { DatosService } from '../../services/datos.service';
-import { AlertController, LoadingController, NumericValueAccessor } from '@ionic/angular';
+import { AlertController, LoadingController, NumericValueAccessor, IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-empaque-list',
@@ -11,6 +11,7 @@ import { AlertController, LoadingController, NumericValueAccessor } from '@ionic
   styleUrls: ['./empaque-list.page.scss'],
 })
 export class EmpaqueListPage implements OnInit {
+  @ViewChild(IonInfiniteScroll, {static: true}) infiniteScroll: IonInfiniteScroll;
   producto: string = '';
   EmpList: EmpList[] = [];
   loading :any = this.loadingController.create();
@@ -21,12 +22,14 @@ export class EmpaqueListPage implements OnInit {
   ischeckA: boolean = false;
   ischeckB: boolean = false;
   ischeckC: boolean = false;
+  valorList: number = 0;
   constructor(private _data: DatosService,
               private _list: ListaempService,
               public alertController: AlertController,
               public loadingController: LoadingController) { }
 
   ngOnInit() {
+    this.limpiar2();
   }
 
   async presentLoading(mensaje: string) {
@@ -43,6 +46,7 @@ export class EmpaqueListPage implements OnInit {
     const prd: string = event.target.value;
     this._list.getListaTalla(prd).subscribe((resp) => {
       this.EmpList = resp;
+      this.valorList = resp.length;
       this.ChangeValuesColumn();
       this.loading.dismiss();
     });
@@ -52,9 +56,7 @@ export class EmpaqueListPage implements OnInit {
     this.ischeckC = false;
   }
   Buscar_Prd() {
-    this.A = 0;
-    this.B = 0;
-    this.C = 0;
+    this.infiniteScroll.disabled = false;
     this.loading = this.presentLoading('Cargando');
     this._list.getListaTalla(this.producto).subscribe((resp) => {
       this.EmpList = resp;
@@ -62,9 +64,7 @@ export class EmpaqueListPage implements OnInit {
       this.loading.dismiss();
     });
     this.chbox = false;
-    this.ischeckA = false;
-    this.ischeckB = false;
-    this.ischeckC = false;
+    this.limpiar2();
   }
 
 
@@ -255,10 +255,35 @@ export class EmpaqueListPage implements OnInit {
     this.ischeckA = false;
     this.ischeckB = false;
     this.ischeckC = false;
+    this.chbox = false;
     this.A = 0;
     this.B = 0;
     this.C = 0;
   }
+
+  limpiar2() {
+    this.EmpList = [];
+    this.ischeckA = false;
+    this.ischeckB = false;
+    this.ischeckC = false;
+    this.A = 0;
+    this.B = 0;
+    this.C = 0;
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+
+      // App logic to determine if all data is loaded
+      // and disable the infinite scroll
+      if (this.EmpList.length > this.valorList) {
+        event.target.disabled = true;
+      }
+    }, 500);
+  }
+
 
 }
 

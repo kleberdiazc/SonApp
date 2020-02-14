@@ -5,7 +5,6 @@
         </ion-toolbar>
     </ion-header>
     <ion-content>
-
         <ion-list>
             <ion-menu-toggle *ngFor="let c of componentes | async">
                 <ion-item [routerLink]="c.redirectTo" routerDirection="root" [class.active-item]="selectedPath === c.redirectTo">
@@ -15,5 +14,13 @@
             </ion-menu-toggle>
         </ion-list>
     </ion-content>
+    <ion-footer>
+        <ion-toolbar color="hsonga">
+            <ion-item color="hsonga" (click)="Cerrar()">
+                <ion-icon slot="start" name="log-out"></ion-icon>
+                <ion-label>Salir</ion-label>
+            </ion-item>
+        </ion-toolbar>
+    </ion-footer>
 </ion-menu>
 <ion-router-outlet id="content" main></ion-router-outlet>

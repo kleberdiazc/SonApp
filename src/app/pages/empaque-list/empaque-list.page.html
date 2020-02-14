@@ -60,7 +60,7 @@
         <ion-row>
             <ion-col size="12" class="top-5">
                 <ion-list>
-                    <ion-card *ngFor="let item of EmpList; let i = index">
+                    <ion-card *ngFor="let item of EmpList; let i = index" class="animated fadeIn slow">
                         <ion-item>
                             <ion-grid>
                                 <ion-row>
@@ -110,6 +110,10 @@
                         </ion-item>
                     </ion-card>
                 </ion-list>
+                <ion-infinite-scroll threshold="300px" (ionInfinite)="loadData($event)">
+                    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+                    </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
             </ion-col>
         </ion-row>
     </ion-grid>
