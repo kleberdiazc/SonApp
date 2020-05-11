@@ -23,7 +23,8 @@ export class DatosService {
   getTallasxProducto(producto: string) {
     let data = {
        sp: 'sp_buscar_tallasxProd',
-       parameters : 'produc:' + producto + ':Varchar|'
+       parameters : 'produc:' + producto + ':Varchar|',
+       connection: 'PRODUCCION'
     };
     return  this.http.post<Tallas[]>(URL_CONSULTA, data);
     }
@@ -38,7 +39,8 @@ export class DatosService {
     getTallasxVenta(producto: string, talla: number) {
       let data = {
          sp: 'sp_buscar_tallasVenta',
-         parameters : 'produc:' + producto + ':Varchar|talla:' + talla + ':NVarchar|'
+         parameters : 'produc:' + producto + ':Varchar|talla:' + talla + ':NVarchar|',
+         connection: 'PRODUCCION'
       };
       return  this.http.post<Tallas[]>(URL_CONSULTA, data);
     }
@@ -46,7 +48,8 @@ export class DatosService {
     getSaldo(producto: string, tallav: number) {
       let data = {
          sp: 'sp_GetSaldo',
-         parameters : 'produc:' + producto + ':Varchar|tallav:' + tallav + ':NVarchar|'
+         parameters : 'produc:' + producto + ':Varchar|tallav:' + tallav + ':NVarchar|',
+         connection: 'PRODUCCION'
       };
       return this.http.post(URL_CONSULTA, data);
     }
@@ -54,7 +57,8 @@ export class DatosService {
     getClase(producto: string) {
       let data = {
          sp: 'sp_mostar_clase',
-         parameters : 'produc:' + producto + ':Varchar|'
+         parameters : 'produc:' + producto + ':Varchar|',
+         connection: 'PRODUCCION'
       };
       return this.http.post(URL_CONSULTA, data);
     }
@@ -65,7 +69,8 @@ export class DatosService {
         sp: 'sp_GuardarOE',
         parameters : 'produc:' + producto + ':Varchar|tallav:' + tallav
         + ':NVarchar|talla:' + talla + ':NVarchar|cantidad:'
-        + cantidad + ':NVarchar|estado:' + estado + ':Varchar|'
+        + cantidad + ':NVarchar|estado:' + estado + ':Varchar|',
+        connection: 'PRODUCCION'
       };
       return this.http.post(URL_TRANSAC, data).pipe(map(async (resp: any) => {
         console.log(resp);
@@ -93,7 +98,8 @@ export class DatosService {
     getListaTalla(producto: string) {
       let data = {
          sp: 'sp_buscar_ListEm',
-         parameters : 'produc:' + producto + ':Varchar|'
+         parameters : 'produc:' + producto + ':Varchar|',
+         connection: 'PRODUCCION'
       };
       return  this.http.post<EmpList[]>(URL_CONSULTA, data);
       }

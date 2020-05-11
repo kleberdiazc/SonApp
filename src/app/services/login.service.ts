@@ -22,7 +22,8 @@ export class LoginService {
     let contra = this.encrypt(contrasena.toUpperCase(), 2);
     let data = { 
       sp: 'sp_login_user',
-      parameters : 'user:' + correo + ':Varchar|pass:' + contra + ':Varchar|'
+      parameters : 'user:' + correo + ':Varchar|pass:' + contra + ':Varchar|',
+      connection: 'PRODUCCION'
     };
     return this.http.post(URL_CONSULTA, data).pipe(map(async (resp: any) => {
       if (resp[0].error === 'true') {

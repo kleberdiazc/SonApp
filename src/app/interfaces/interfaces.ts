@@ -28,3 +28,28 @@ export interface EmpList{
 
 
 }
+
+
+export interface Prioridad {
+    ID: number;
+    Planta: number;
+    CodPed: string;
+    Ped: string;
+    detpedido: string;
+    CodProd: string;
+    pro_clasepago: string;
+    tal_codigo: string;
+    columna: string;
+    prioridad: string;
+    MASTERS_PROGRAMADOS: string;
+    pedido: string;
+    dpe_codprod: string;
+    pro_desesp: string;
+    Cliente: string;
+    Descri: string;
+}
+
+export interface Colum {
+    id: string;
+    descri: string;
+}

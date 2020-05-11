@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('../empaque-list/empaque-list.module').then( m => m.EmpaqueListPageModule)
       },
       {
+        path: 'prioridad',
+        loadChildren: () => import('../prioridad/prioridad.module').then( m => m.PrioridadPageModule)
+      },
+      {
         path: 'full',
         redirectTo: '/menu/inicio'
       }

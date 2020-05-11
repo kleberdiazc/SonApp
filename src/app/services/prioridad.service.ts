@@ -1,41 +1,39 @@
+import { Injectable } from '@angular/core';
+import { Prioridad} from '../interfaces/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { map, filter } from 'rxjs/operators';
 import { AlertController, Platform, LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { Tallas, EmpList } from '../interfaces/interfaces';
 import { URL_CONSULTA } from '../../config/url.servicios';
 import { URL_TRANSAC } from './../../config/url.servicios';
-import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ListaempService {
-  EmpList: EmpList[];
+export class PrioridadService {
+  Prioridad: Prioridad[];
   constructor(private http: HttpClient,
               public alertController: AlertController,
               public platform: Platform,
               private storage: Storage,
               public loadingController: LoadingController) { }
 
-  getListaTalla(producto: string) {
+  getListaTallaPrioridad(talla: string,columna: string) {
     let data = {
-                sp: 'sp_buscar_ListEm',
-                 parameters : 'produc:' + producto + ':Varchar|',
-                 connection: 'PRODUCCION'
+                sp: 'SPO_DetalleOrdenEmpaque_planta_nuevo',
+                 // tslint:disable-next-line:max-line-length
+                 parameters : 'TipOri:' + 'Det' + ':Varchar|pro_clas01:' + 'CC' + ':Varchar|pro_clas05:' + '' + ':Varchar|tal_descri:' + talla + ':Varchar|Planta:' + '1' + ':Varchar|MostrarTodo:' + 'N' + ':Varchar|@IsWeb:' + 'S' + ':Varchar|@clase:' + 'C' + ':Varchar|@tipoColumna:' + columna + ':Varchar|',
+                 connection: 'DESAPRODUCCION'
        };
-    return  this.http.post<EmpList[]>(URL_CONSULTA, data);
+    return  this.http.post<Prioridad[]>(URL_CONSULTA, data);
     }
 
-    obenerLista() {
-      return this.EmpList;
-    }
-    guardarOe(xml: string, usuario: string) {
+    guardarPrioridad(xml: string, usuario: string) {
       const data = {
-        sp: 'spr_grabaInstrucGlobalesMovil',
+        sp: 'spr_grabaPrioridadPlantaProcesoOE',
         parameters : 'xml:' + xml + ':xml|USER:' + usuario
         + ':Varchar|',
-        connection: 'PRODUCCION'
+        connection: 'DESAPRODUCCION'
       };
       return this.http.post(URL_TRANSAC, data).pipe(map(async (resp: any) => {
         if (resp[0].error === 'true') {

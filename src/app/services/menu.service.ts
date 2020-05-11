@@ -21,7 +21,8 @@ export class MenuService {
 getAll() {
   let data = {
     sp: 'sp_menu_x_usuario',
-    parameters : 'user:' + this.log.id_usuario + ':Varchar|'
+    parameters : 'user:' + this.log.id_usuario + ':Varchar|',
+    connection: 'PRODUCCION'
   };
   //return this.http.post('https://localhost:44385/api/Consultas', data)
   const url = URL_CONSULTA;
