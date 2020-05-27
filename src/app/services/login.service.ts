@@ -134,5 +134,8 @@ export class LoginService {
     return cad;
   }
 
+  getuser(){
+    return this.id_usuario;
+  }
 
 }

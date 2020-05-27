@@ -28,8 +28,12 @@
     --ion-color-tint: var(--ion-color-songa-tint);
 }
 
+ion-radio {
+    --size: 10px;
+}
+
 ion-checkbox {
-    --size: 20px;
+    --size: 13px;
 }
 
 .ion-checkEdit {
@@ -59,7 +63,7 @@ ion-checkbox {
 }
 
 .my-label {
-    font-size: 0.7em;
+    font-size: 0.6em;
 }
 
 .ion-cant {

@@ -8,6 +8,7 @@ import { PrioridadPageRoutingModule } from './prioridad-routing.module';
 
 import { PrioridadPage } from './prioridad.page';
 import { PipesModule } from '../../pipes/pipes.module';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { PipesModule } from '../../pipes/pipes.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    PrioridadPageRoutingModule
+    PrioridadPageRoutingModule,
+    AutocompleteLibModule
   ],
   declarations: [PrioridadPage]
 })

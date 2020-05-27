@@ -23,6 +23,7 @@ export class EmpaqueListPage implements OnInit {
   ischeckB: boolean = false;
   ischeckC: boolean = false;
   valorList: number = 0;
+  data :any[] = Array(20);
   constructor(private _data: DatosService,
               private _list: ListaempService,
               public alertController: AlertController,
@@ -56,7 +57,7 @@ export class EmpaqueListPage implements OnInit {
     this.ischeckC = false;
   }
   Buscar_Prd() {
-    this.infiniteScroll.disabled = false;
+    //this.infiniteScroll.disabled = false;
     this.loading = this.presentLoading('Cargando');
     this._list.getListaTalla(this.producto).subscribe((resp) => {
       this.EmpList = resp;
@@ -273,14 +274,12 @@ export class EmpaqueListPage implements OnInit {
 
   loadData(event) {
     setTimeout(() => {
-      console.log('Done');
-      event.target.complete();
-
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
       if (this.EmpList.length > this.valorList) {
         event.target.disabled = true;
       }
+      const  nuevoArr = Array(20);
+      console.log('Done');
+      event.target.complete();
     }, 500);
   }
 
