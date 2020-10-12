@@ -16,7 +16,12 @@ const routes: Routes = [
   {
     path: 'prioridad',
     loadChildren: () => import('./pages/prioridad/prioridad.module').then( m => m.PrioridadPageModule)
+  },
+  {
+    path: 'aprob-req',
+    loadChildren: () => import('./pages/aprob-req/aprob-req.module').then( m => m.AprobReqPageModule)
   }
+
 ];
 
 @NgModule({

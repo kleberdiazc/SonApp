@@ -25,6 +25,10 @@ const routes: Routes = [
         loadChildren: () => import('../prioridad/prioridad.module').then( m => m.PrioridadPageModule)
       },
       {
+        path: 'aprob-req',
+        loadChildren: () => import('../aprob-req/aprob-req.module').then( m => m.AprobReqPageModule)
+      },
+      {
         path: 'full',
         redirectTo: '/menu/inicio'
       }

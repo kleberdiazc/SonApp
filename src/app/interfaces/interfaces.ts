@@ -53,3 +53,34 @@ export interface Colum {
     id: string;
     descri: string;
 }
+
+export interface Requerimientos{
+    Requerimiento: string,
+    factura: string,
+    corigen: string,
+    libras:number
+}
+
+export interface Requerimientosinfo{
+    ProductoCodigo: string,
+    ProductoDes: string,
+    talla: string,
+    TallaVta: string,
+    cantidad: number,
+    Req: string,
+    Fecha: string,
+    Observacion: string,
+    Tipo: string,
+    Lote: string,
+    Secuencial:number,
+    Producto: string,
+    ConLote: string,
+    Factura: string,
+    rpc_MaxLibPed:number,
+    NumeroTrx:number,
+    BodOrigen:number,
+    Origen:string,
+    BodDestino:number,
+    Destino:string
+
+}

@@ -1,0 +1,114 @@
+<ion-header no-border="no-border">
+  <ion-toolbar color="hsonga">
+      <ion-buttons slot="start">
+          <ion-menu-button color="light" menu="first"></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+          <ion-button (click)="GuardarDatos()">
+              Grabar
+          </ion-button>
+      </ion-buttons>
+      <ion-title>Requerimientos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+      <ion-row>
+          <ion-col size="6">
+              <ion-item class="background-input">
+                  <ion-label>Req</ion-label>
+                  <ion-input class="ion-text-right" inputmode="numeric" [(ngModel)]="producto"></ion-input>
+              </ion-item>
+          </ion-col>
+          <ion-col size="6">
+              <ion-item >
+                  <ion-label>Fresco</ion-label>
+                  <ion-checkbox slot="end" [(ngModel)]="isChecked" mode="ios"></ion-checkbox>
+              </ion-item>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col size="6">
+              <ion-item>
+                  <ion-label position="floating">Fecha Incio</ion-label>
+                  <ion-datetime
+                      displayFormat="YYYY/MM/DD"
+                      min="2016-03-14"
+                      max="2025-12-09"
+                      (ionChange)="cambioFechaIni($event)"
+                      (ionCancel)="clearIni()"
+                      [(ngModel)]="Inicio"
+                    ></ion-datetime>
+              </ion-item>
+          </ion-col>
+          <ion-col size="6">
+              <ion-item>
+                  <ion-label position="floating">Fecha Fin</ion-label>
+                  <ion-datetime
+                      displayFormat="YYYY/MM/DD"
+                      min="2016-03-14"
+                      max="2025-12-09"
+                      (ionChange)="cambioFechaFIn($event)"
+                      (ionCancel)="clearFin()"
+                      [(ngModel)]="Fin"></ion-datetime
+                      >
+              </ion-item>
+          </ion-col>
+
+      </ion-row>
+      <ion-row>
+
+          <ion-col size="12">
+              <ion-button (click)="Buscar_Req()" expand="block">
+                  <ion-icon name="search" size="large"></ion-icon>
+              </ion-button>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-searchbar placeholder="Buscar" [(ngModel)]="buscar" animated (ionChange)="updateFilter($event)"></ion-searchbar>
+          <ion-col size="12">
+              <div>
+                  <ngx-datatable
+                      #table
+                      class="material striped"
+                      [columnMode]="'flex'"
+                      [rows]="rows"
+                      [columns]="columns"
+                      [headerHeight]="50"
+                      [footerHeight]="50"
+                      [rowHeight]="'auto'"
+                      [limit]="20"
+                      [selected]="selected"
+                      [selectionType]="'checkbox'"
+                      [selectAllRowsOnPage]="false"
+                      (select)='onSelect($event)'>
+                      <ngx-datatable-column
+                          id="my-label-table"
+                          name=""
+                          prop='selected'
+                          headerCheckboxable="true"
+                          checkboxable="true"
+                          sortable="false"
+                          canAutoResize="false"
+                          draggable="false"
+                          resizable="false"
+                          [flexGrow]="1" ></ngx-datatable-column>
+                      <ngx-datatable-column name="Req" prop='Requerimiento' [flexGrow]="3"></ngx-datatable-column>
+                      <ngx-datatable-column name="Factura" prop='factura' [flexGrow]="4"></ngx-datatable-column>
+                      <!--<ngx-datatable-column name="corigen" prop='corigen' [flexGrow]="2"></ngx-datatable-column>-->
+                      <ngx-datatable-column name="Ver" prop="name" [flexGrow]="2">
+                          <ng-template
+                              ngx-datatable-cell-template="ngx-datatable-cell-template"
+                              let-rowIndex="rowIndex"
+                              let-value="value"
+                              let-row="row">
+                              <ion-button size="small" (click)="onClickRow(row)">Ver</ion-button>
+                          </ng-template>
+                      </ngx-datatable-column>
+                  </ngx-datatable>
+              </div>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

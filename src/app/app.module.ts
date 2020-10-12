@@ -12,6 +12,7 @@ import { ComponentsModule } from './components/components.module';
 import { HTTP } from '@ionic-native/http/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    HTTP
+    HTTP,DatePipe
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ListaempService } from '../../services/listaemp.service';
 import { DatosService } from '../../services/datos.service';
 import { AlertController, LoadingController, NumericValueAccessor, IonInfiniteScroll } from '@ionic/angular';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-empaque-list',
@@ -23,11 +24,13 @@ export class EmpaqueListPage implements OnInit {
   ischeckB: boolean = false;
   ischeckC: boolean = false;
   valorList: number = 0;
-  data :any[] = Array(20);
+  data: any[] = Array(20);
+  user: string = '';
   constructor(private _data: DatosService,
               private _list: ListaempService,
               public alertController: AlertController,
-              public loadingController: LoadingController) { }
+              public loadingController: LoadingController,
+              public loginuser: LoginService) { }
 
   ngOnInit() {
     this.limpiar2();
@@ -158,7 +161,11 @@ export class EmpaqueListPage implements OnInit {
     }
     xml = xml + '</Tabla>';
     console.log(xml);
-    this._list.guardarOe(xml, 'Administra').subscribe(() => {
+    this.user  = this.loginuser.getuser();
+    if (this.user === '') {
+      this.user = 'ADMINISTRA';
+    }
+    this._list.guardarOe(xml,  this.user).subscribe(() => {
         this.loading.dismiss();
         this.limpiar();
       });
