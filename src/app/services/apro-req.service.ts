@@ -54,7 +54,7 @@ export class AproReqService {
                  + ':Date|Usuario:'+ usuario
                  + ':VARCHAR|SoloFresco:'+ fresco
                  + ':VARCHAR|EsPorWeb:'+ web
-                 + ':VARCHAR|',
+                 + ':VARCHAR|EsPreAprobacion:1:VARCHAR|',
                  connection: 'DESAPRODUCCION'
        };
     return  this.http.post<Requerimientos[]>(URL_CONSULTA, data);

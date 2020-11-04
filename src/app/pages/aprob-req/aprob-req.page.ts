@@ -65,7 +65,12 @@ export class AprobReqPage implements OnInit {
     //this.getreque();
   }
 
-
+  getRowClass = (row) => {
+    console.log('rowClass')
+    return {
+     'row-color': row.Excepcion === "R"
+   };
+  }
    
   async presentLoading(mensaje: string) {
     this.loading = await this.loadingController.create({
@@ -207,5 +212,6 @@ export class AprobReqPage implements OnInit {
   clearFin() {
     this.Fin = null;
   }
+
 
 }

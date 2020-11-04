@@ -58,7 +58,8 @@ export interface Requerimientos{
     Requerimiento: string,
     factura: string,
     corigen: string,
-    libras:number
+    libras: number,
+    Excepcion: string
 }
 
 export interface Requerimientosinfo{

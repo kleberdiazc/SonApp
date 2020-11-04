@@ -101,3 +101,13 @@ ion-checkbox {
     width: 6% !important;
     font-size: 20px;
   }
+
+
+.redRow {
+        background-color: green;
+}
+
+::ng-deep  .row-color {
+    background-color: red;
+    
+  }
